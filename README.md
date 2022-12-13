@@ -9,6 +9,6 @@ criação do banco de dados:
 1. crie um novo banco de dados
 2. vá no arquivo .env e altere o DB_DATABASE
  para o nome do banco criado anteriormente
-3. dê o comando ```php arisan migrate``
+3. dê o comando ``php arisan migrate``
 4. verifique se as tabelas foram criadas
  no banco de dados criado no primeiro passo
