@@ -7,10 +7,35 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration
 {
     /**
-     * Run the migrations.
-     *
-     * @return void
+     * Comandos STATUS, RESET, REFRESH E FRESH
+     * a) php artisan migrate:status
+     *vai listar as migrations que já foram executadas
+    *
+    *b) php artisan migrate:reset
+    *vai reverter todas as migrations no banco. na migration mais atual para 
+    * a mais antiga, o metodo reset vai sair executando os metodos down de 
+    * cada migration, fazendo que o banco volte para o estado original.
+    * executa o rollback de todas as migrations
+    *
+    *c) php artisan migrate:refresh
+    *ele vai recriar o banco de dados.vai executar os metodos down de cada migration 
+    * e na sequencia vai automaticamente o metodo up com o comado migrate.
+    * ele vai zerar o banco. executa o rollback de todas as migrations mais o
+    * migrate para recriar os objetos
+    *
+    *d) php artisan migrate:fresh
+    * faz o drop de todos os objetos do banco de dados mais o migrate para
+    * recriar os objetos. ele nao faz rollback, ele apenas apaga e cria. 
+    *ele nao precisa executar o down da migrate, nesse caso executa apenas o UP
+    *
+    *
+    *
+    *
+    *
      */
+
+
+
 
      /*
      O php artisan migrate vai verificar todas as migrations que não foram
