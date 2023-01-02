@@ -11,13 +11,13 @@
 
         <div class="informacao-pagina">
             <div class="contato-principal">
-                @component('site.layouts._components.formContact',['classe'=>'borda-preta'])
+                @component('site.layouts._components.formContact',['classe'=>'borda-preta','reasonContact'=>$reasonContact])
                     <p>Our team will review your message and get back to you as soon as possible.</p>
                     <p>Our response time is 48 hours</p>
                 @endcomponent
             </div>
         </div>  
-        </div>
+        
 
         <div class="rodape">
         <div class="redes-sociais">

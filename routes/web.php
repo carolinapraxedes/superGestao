@@ -21,7 +21,7 @@ use App\Http\Controllers\ContactController;
 Route::get('/', [PrincipalController::class,'principal'])->name('site.index');
 Route::get('/aboutUs',[AboutUsController::class,'aboutUs'])->name('site.aboutus');
 Route::get('/contact',[ContactController::class,'contact'])->name('site.contact');
-Route::post('/contact',[ContactController::class,'contact'])->name('site.contact');
+Route::post('/contact',[ContactController::class,'saveContact'])->name('site.contact');
 Route::get('/login', function(){return 'Login';})->name('site.login');
 
 Route::prefix('/app')->group(function(){
