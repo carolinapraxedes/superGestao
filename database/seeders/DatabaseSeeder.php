@@ -12,6 +12,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(ProviderSeeder::class);
         $this->call(ContactSiteSeeder::class);
+        $this->call(reasonContactSeeder::class);
         // \App\Models\User::factory(10)->create();
 
         // \App\Models\User::factory()->create([

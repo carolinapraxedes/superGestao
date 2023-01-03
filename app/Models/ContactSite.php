@@ -9,5 +9,5 @@ class ContactSite extends Model
 {
     use HasFactory;//necessário para rodar a factory no seeder
     protected $table = 'contact_sites';
-    protected $fillable = ['name','phoneNumber','email','reasonContact','message'];
+    protected $fillable = ['name','phoneNumber','email','reasonContactId','message'];
 }

@@ -4,18 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\ContactSite;
+use App\Models\reasonContact;
 
 class ContactController extends Controller
 {
     public function contact(Request $request){
         //dd($request->all());
 
-        $reasonContact = [
-            '1' => 'Questions',
-            '2' => 'Commendation',
-            '3' => 'Complain'
-        ];
-
+        $reasonContact = reasonContact::all();
         return view('site.contact',['reasonContact'=> $reasonContact]);
     }
 
@@ -33,14 +29,16 @@ class ContactController extends Controller
             o nome do input*/  
             'name'=>'required|min:3|max:40',
             'phoneNumber'=>'required',
-            'email'=>'required',
-            'reasonContact'=>'required',
+            'email'=>'email',
+            'reasonContactId'=>'required',
             'message'=>'required|max:20000'
 
             /*quando a validação não passa, o laravel faz um
             redirect para a rota anterior através a variavel 
             $errors preenchida */ 
         ]);
-         
+        //dd($request->all());
+         ContactSite::create($request->all());
+         return redirect()->route('site.index');
     }
 }
