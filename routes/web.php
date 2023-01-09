@@ -7,6 +7,7 @@ use App\Http\Controllers\PrincipalController;
 use App\Http\Controllers\AboutUsController;
 use App\Http\Controllers\ContactController;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,7 +19,11 @@ use App\Http\Controllers\ContactController;
 |
 */
 
-Route::get('/', [PrincipalController::class,'principal'])->name('site.index');
+Route::get('/', [PrincipalController::class,'principal'])
+    ->name('site.index')
+    ->middleware('log.acess');
+
+
 Route::get('/aboutUs',[AboutUsController::class,'aboutUs'])->name('site.aboutus');
 Route::get('/contact',[ContactController::class,'contact'])->name('site.contact');
 Route::post('/contact',[ContactController::class,'saveContact'])->name('site.contact');
