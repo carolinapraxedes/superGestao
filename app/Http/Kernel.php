@@ -68,7 +68,8 @@ class Kernel extends HttpKernel
         'signed' => \App\Http\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
-        'log.acess' => \App\Http\Middleware\AcessLogMiddleware::class
+        'log.acess' => \App\Http\Middleware\AcessLogMiddleware::class,
+        'authentication'=> \App\Http\Middleware\AuthenticationMiddleware::class
 
         /*aqui declaramos um apelido a um middleware*/ 
     ];
