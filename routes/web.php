@@ -8,6 +8,11 @@ use App\Http\Controllers\AboutUsController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\LoginController;
 
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ClientsController;
+use App\Http\Controllers\ProvidersController;
+use App\Http\Controllers\ProductsController;
+
 
 
 /*
@@ -30,15 +35,19 @@ Route::get('/', [PrincipalController::class,'principal'])
 Route::get('/aboutUs',[AboutUsController::class,'aboutUs'])->name('site.aboutus');
 Route::get('/contact',[ContactController::class,'contact'])->name('site.contact');
 Route::post('/contact',[ContactController::class,'saveContact'])->name('site.contact');
-Route::get('/login', [LoginController::class,'index'])->name('site.login');
+Route::get('/login/{erro?}', [LoginController::class,'index'])->name('site.login');
 Route::post('/login', [LoginController::class,'auth'])->name('site.login');
 
 Route::middleware('authentication:default')->prefix('/app')->group(function(){
-    Route::get('/clients',function(){return 'Clients';})
+    Route::get('/home',[HomeController::class,'index'])
+        ->name('app.home');
+    Route::get('/logout',[LoginController::class,'logout'])
+        ->name('app.logout');
+    Route::get('/clients',[ClientsController::class,'index'])
         ->name('app.clients');
-    Route::get('/providers',function(){return 'Providers';})
+    Route::get('/providers',[ProvidersController::class,'index'])
         ->name('app.providers');
-    Route::get('/products', function(){return 'Products';})
+    Route::get('/products', [ProductsController::class,'index'])
         ->name('app.products');
 });
 

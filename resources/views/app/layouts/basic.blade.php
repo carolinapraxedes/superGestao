@@ -7,7 +7,7 @@
     </head>
 
     <body>
-        @include('site.layouts._partials.top')
+        @include('app.layouts._partials.top')
         @yield('content')
     </body>
 </html>

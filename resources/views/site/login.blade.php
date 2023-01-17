@@ -19,6 +19,7 @@
                     {{$errors->has('password') ? $errors->first('password') : ''}}
                     <button type="submit">Sign In</button>
                 </form>
+                {{isset($erro) && $erro != '' ? $erro : ''}}
             </div>
            
         </div>  
