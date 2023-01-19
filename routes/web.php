@@ -45,8 +45,24 @@ Route::middleware('authentication:default')->prefix('/app')->group(function(){
         ->name('app.logout');
     Route::get('/clients',[ClientsController::class,'index'])
         ->name('app.clients');
+
+    //routes providers
     Route::get('/providers',[ProvidersController::class,'index'])
         ->name('app.providers');
+        Route::post('/providers/list',[ProvidersController::class,'list'])
+        ->name('app.providers.list');
+
+        Route::get('/providers/add',[ProvidersController::class,'add'])
+        ->name('app.providers.add');
+        Route::post('/providers/add',[ProvidersController::class,'add'])
+        ->name('app.providers.add');
+
+        Route::get('/providers/edit/{id}/{msg?}',[ProvidersController::class,'edit'])
+        ->name('app.providers.edit');
+
+
+
+
     Route::get('/products', [ProductsController::class,'index'])
         ->name('app.products');
 });
