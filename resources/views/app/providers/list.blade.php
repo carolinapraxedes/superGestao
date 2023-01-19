@@ -35,9 +35,11 @@
                                 <td><a href="{{route('app.providers.edit',$provider->id)}}">Editar</a></td>
                                 <td>Delete</td>
                             </tr>
+                           
                         @endforeach
                     </tbody>
                 </table>
+                {{$providers->appends($request)->links()}}
 
             </div>
         </div>

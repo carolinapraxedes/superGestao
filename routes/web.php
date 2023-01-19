@@ -49,6 +49,8 @@ Route::middleware('authentication:default')->prefix('/app')->group(function(){
     //routes providers
     Route::get('/providers',[ProvidersController::class,'index'])
         ->name('app.providers');
+        Route::get('/providers/list',[ProvidersController::class,'list'])
+        ->name('app.providers.list');
         Route::post('/providers/list',[ProvidersController::class,'list'])
         ->name('app.providers.list');
 

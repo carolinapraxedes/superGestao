@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\Provider;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class ProvidersController extends Controller
 {
@@ -16,12 +17,10 @@ class ProvidersController extends Controller
         $providers = Provider::where('name','like','%'.$request->input('name').'%')
             ->where('site','like','%'.$request->input('site').'%')
             ->where('uf','like','%'.$request->input('uf').'%')
-            ->where('email','like','%'.$request->input('email').'%')
-            //estou dizendo que procure que procure 
-            //no banco oq foi passado no request
-            ->get();
-            
-        return view('app.providers.list',['providers'=>$providers]);
+            ->where('email','like','%'.$request->input('email').'%')->paginate(2); 
+            //estou dizendo que procure 
+            //no banco oq foi passado no request                        
+        return view('app.providers.list',['providers'=>$providers,'request'=>$request->all()]);
     }
 
     public function add(Request $request){
