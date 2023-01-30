@@ -62,11 +62,13 @@ Route::middleware('authentication:default')->prefix('/app')->group(function(){
         Route::get('/providers/edit/{id}/{msg?}',[ProvidersController::class,'edit'])
         ->name('app.providers.edit');
 
+        Route::get('/providers/delete/{id}',[ProvidersController::class,'delete'])
+        ->name('app.providers.delete');
 
 
 
-    Route::get('/products', [ProductsController::class,'index'])
-        ->name('app.products');
+    //routes products
+    Route::resource('products',ProductsController::class);
 });
 
 

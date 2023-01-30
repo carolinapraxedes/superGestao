@@ -86,4 +86,10 @@ class ProvidersController extends Controller
         $provider = Provider::find($id);
         return view('app.providers.add',['provider'=>$provider,'msg' => $msg]);
     }
+
+    public function delete($id){
+        Provider::find($id)->delete();
+
+        return redirect()->route('app.providers');
+    }
 }

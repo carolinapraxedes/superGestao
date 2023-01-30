@@ -32,8 +32,8 @@
                                 <td>{{$provider->site}}</td>
                                 <td>{{$provider->uf}}</td>
                                 <td>{{$provider->email}}</td>
-                                <td><a href="{{route('app.providers.edit',$provider->id)}}">Editar</a></td>
-                                <td>Delete</td>
+                                <td><a href="{{route('app.providers.edit',$provider->id)}}">Edit</a></td>
+                                <td><a href="{{route('app.providers.delete',$provider->id)}}">Delete</a></td>
                             </tr>
                            
                         @endforeach
