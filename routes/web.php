@@ -12,8 +12,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ClientsController;
 use App\Http\Controllers\ProvidersController;
 use App\Http\Controllers\ProductsController;
-
-
+use App\Http\Controllers\TesteProdutos;
 
 /*
 |--------------------------------------------------------------------------
@@ -65,10 +64,15 @@ Route::middleware('authentication:default')->prefix('/app')->group(function(){
         Route::get('/providers/delete/{id}',[ProvidersController::class,'delete'])
         ->name('app.providers.delete');
 
-
-
     //routes products
-    Route::resource('products',ProductsController::class);
+    Route::resource('products',ProductsController::class)->names([
+        'index'=>'app.products',
+        'store'=>'app.products.store'
+    ]);
+    Route::resource('teste_produtos',TesteProdutos::class)->names([
+        'index'=>'app.produtos',
+        'store'=>'app.produtos.store'
+    ]);
 });
 
 
