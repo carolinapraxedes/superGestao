@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Products;
 use App\Models\testeProducts;
+use App\Models\Unit;
 use Illuminate\Http\Request;
 
 class ProductsController extends Controller
@@ -13,9 +14,10 @@ class ProductsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('app.products.index');
+        $products = Products::paginate(10);
+        return view('app.products.index',['products'=>$products,'request'=>$request->all()]);
     }
 
     /**
@@ -25,7 +27,9 @@ class ProductsController extends Controller
      */
     public function create()
     {
-        //
+        $units = Unit::all();
+        //estou recuperando as unidades registradas no banco 
+        return view('app.products.create',['units'=>$units]);
     }
 
     /**
@@ -36,7 +40,15 @@ class ProductsController extends Controller
      */
     public function store(Request $request)
     {
-       
+        /*
+        * É possível registrar desse jeito pois
+        * o model está com os campos no fillable
+        * além que o form ja esta com os names dos campos
+        */
+
+        //dd($request->all());
+        Products::create($request->all());
+       return redirect()->route('app.products');
     }
 
     /**

@@ -67,6 +67,7 @@ Route::middleware('authentication:default')->prefix('/app')->group(function(){
     //routes products
     Route::resource('products',ProductsController::class)->names([
         'index'=>'app.products',
+        'create'=>'app.products.create',
         'store'=>'app.products.store'
     ]);
     Route::resource('teste_produtos',TesteProdutos::class)->names([
