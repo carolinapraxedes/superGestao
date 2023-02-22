@@ -14,26 +14,24 @@
         <div class="informacao-pagina">
             {{$msg ?? ''}}
             <div style="width:30%; margin-left:auto;margin-right:auto;">
-                <form action="{{route('app.products.store')}}" method="post">
-                  
+                <form action="{{route('app.products.store')}}" method="post">                  
                     @csrf
-                    <input type="text" value="" name="name" placeholder="name's product" class="borda-preta">
-                    
+                    <input type="text" value="{{old('name')}}" name="name" placeholder="name's product" class="borda-preta">
+                    {{$errors->has('name') ? $errors->first('name') : ''}}
                    
-                    <input type="text" value="" name="description" placeholder="description" class="borda-preta">
-                    
+                    <input type="text" value="{{old('description')}}" name="description" placeholder="description" class="borda-preta">
+                    {{$errors->has('description') ? $errors->first('description') : ''}}
 
-                    <input type="text" value="" name="weight" placeholder="weight" class="borda-preta">
-                    
+                    <input type="text" value="{{old('weight')}}" name="weight" placeholder="weight" class="borda-preta">
+                    {{$errors->has('weight') ? $errors->first('weight') : ''}}
 
                     <select name="unitId" id="">
-                        <option value="">select a unit of measurement</option>
+                        <option >select a unit of measurement</option>
                         @foreach ($units as $unit )
-                            <option value="{{$unit->id}}">{{$unit->description}}</option>
-                        @endforeach
-                        <option value="1">Unit</option>
+                            <option value="{{$unit->id}}" {{old('unitId') == $unit->id ? 'selected' : ''}}>{{$unit->description}}</option>
+                        @endforeach                    
                     </select>
-                    
+                    {{$errors->has('unitId') ? $errors->first('unitId') : ''}}
 
                     <button type="submit">Register</button>
                 </form>

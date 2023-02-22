@@ -40,6 +40,28 @@ class ProductsController extends Controller
      */
     public function store(Request $request)
     {
+        //regras de validação
+        $rules =[
+            'name'=>'required|min:3|max:40',
+            'description'=>'required|min:3|max:2000',
+            'weight'=>'required|integer',
+            /*o unit id so vai existir se dado 
+            encaminhado existir na tabela unidades.
+            para isso, usamos: exists:<tabela>,<coluna>
+            */
+            'unitId'=>'exists:units,id'        
+        ];
+        $feedback=[
+            'required'=> 'O campo :attribute deve ser preenchido',
+            'name.min'=> 'O campo nome deve ter no mínimo 3 caracteres',
+            'name.max'=> 'O campo nome deve ter no máximo 40 caracteres',
+            'description.min'=> 'O campo descrição deve ter no mínimo 3 caracteres',
+            'description.max'=> 'O campo descrição deve ter no máximo 2000 caracteres',
+            'weight.integer' => 'O campo peso deve ser um número inteiro',
+            'unitId.exists' => 'A unidade de medida informada não existe'
+        ];
+
+        $request->validate($rules,$feedback);
         /*
         * É possível registrar desse jeito pois
         * o model está com os campos no fillable
@@ -59,7 +81,8 @@ class ProductsController extends Controller
      */
     public function show(Products $products)
     {
-        //
+        //dd($products);
+        return view('app.products.show',['products'=>$products]);
     }
 
     /**
@@ -70,7 +93,7 @@ class ProductsController extends Controller
      */
     public function edit(Products $products)
     {
-        //
+        
     }
 
     /**
