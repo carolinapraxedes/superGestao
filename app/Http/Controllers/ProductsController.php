@@ -79,10 +79,10 @@ class ProductsController extends Controller
      * @param  \App\Models\Products  $products
      * @return \Illuminate\Http\Response
      */
-    public function show(Products $products)
+    public function show(Products $product)
     {
-        //dd($products);
-        return view('app.products.show',['products'=>$products]);
+   
+        return view('app.products.show',['product'=>$product]);
     }
 
     /**

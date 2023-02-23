@@ -33,7 +33,7 @@
                                 <td>{{$product->description}}</td>
                                 <td>{{$product->weight}}</td>
                                 <td>{{$product->unitId}}</td>
-                                <td><a href="{{route('app.products.show',['product'=>$product->id])}}">More Details</a></td>
+                                <td><a href="{{route('app.products.show',$product->id)}}">More Details</a></td>
                                 <td><a href="">Edit</a></td>
                                 <td><a href="">Delete</a></td>
                             </tr>

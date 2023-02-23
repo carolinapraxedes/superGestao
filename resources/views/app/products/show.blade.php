@@ -14,10 +14,26 @@
         <div class="informacao-pagina">
             {{$msg ?? ''}}
             <div style="width:30%; margin-left:auto;margin-right:auto;">
-                <table border="1">
+                <table border="1" style="text-align:left">
                     <tr>
                         <td>ID:</td>
-                        <td>{{$products->id}}</td>
+                        <td>{{$product->id}}</td>
+                    </tr>
+                    <tr>
+                        <td>Name:</td>
+                        <td>{{$product->name}}</td>
+                    </tr>
+                    <tr>
+                        <td>Description:</td>
+                        <td>{{$product->description}}</td>
+                    </tr>
+                    <tr>
+                        <td>Weight:</td>
+                        <td>{{$product->weight}}</td>
+                    </tr>
+                    <tr>
+                        <td>unitId:</td>
+                        <td>{{$product->unitId}}</td>
                     </tr>
                 </table>
             </div>
