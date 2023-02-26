@@ -3,10 +3,7 @@
 @section('content')
     <div class="conteudo-pagina">
         <div class="titulo-pagina-2">
-  
-                
-                <p>New product</p>
-
+            <p>Change product</p>
         </div>
         <div class="menu">
             <ul>
@@ -15,9 +12,9 @@
             </ul>
         </div>
         <div class="informacao-pagina">
-            {{$msg ?? ''}}
+            
             <div style="width:30%; margin-left:auto;margin-right:auto;">
-                @component('app.products._components.formCreateEdit',['units'=>$units])
+                @component('app.products._components.formCreateEdit',['product'=>$product, 'units'=>$units])
                     
                 @endcomponent
             </div>

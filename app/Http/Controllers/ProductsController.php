@@ -91,9 +91,11 @@ class ProductsController extends Controller
      * @param  \App\Models\Products  $products
      * @return \Illuminate\Http\Response
      */
-    public function edit(Products $products)
+    public function edit(Products $product)
     {
-        
+        $units = Unit::all();
+        // return view('app.products.edit',['product'=>$product, 'units'=>$units]);
+        return view('app.products.create',['product'=>$product, 'units'=>$units]);
     }
 
     /**
@@ -103,9 +105,14 @@ class ProductsController extends Controller
      * @param  \App\Models\Products  $products
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Products $products)
+    public function update(Request $request, Products $product)
     {
-        //
+        /*$product = instancia do objeto antes de mandar os novos dados
+        * eu recupero a instancia do objeto, utilizo o metodo update e recebo os 
+        * os dados requisição irão atualizar os atributos habilitados
+        */
+        $product->update($request->all());
+        return redirect()->route('app.products.show',['product'=>$product->id]);
     }
 
     /**
@@ -114,8 +121,9 @@ class ProductsController extends Controller
      * @param  \App\Models\Products  $products
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Products $products)
+    public function destroy(Products $product)
     {
-        //
+        $product->delete();
+        return redirect()->route('app.products');
     }
 }

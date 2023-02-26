@@ -70,7 +70,13 @@ Route::middleware('authentication:default')->prefix('/app')->group(function(){
         'create'=>'app.products.create',
         'store'=>'app.products.store',
         'show'=>'app.products.show',
+        'edit'=>'app.products.edit',
+        'update'=>'app.products.update',
+
+        
     ]);
+
+    
     Route::resource('teste_produtos',TesteProdutos::class)->names([
         'index'=>'app.produtos',
         'store'=>'app.produtos.store'

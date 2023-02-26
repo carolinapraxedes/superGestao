@@ -34,8 +34,15 @@
                                 <td>{{$product->weight}}</td>
                                 <td>{{$product->unitId}}</td>
                                 <td><a href="{{route('app.products.show',$product->id)}}">More Details</a></td>
-                                <td><a href="">Edit</a></td>
-                                <td><a href="">Delete</a></td>
+                                <td><a href="{{route('app.products.edit',$product->id)}}">Edit</a></td>
+                                <td>
+                                    <form id="form_{{$product->id}}" method="post" action="{{route('products.destroy',$product->id)}}">
+                                        @method('DELETE')
+                                        @csrf
+                                        {{-- <button type="submit">Excluir</button> --}}
+                                        <a href="#" onclick="document.getElementById('form_{{$product->id}}').submit()">Delete</a> 
+                                    </form>
+                                </td>
                             </tr>
                            
                         @endforeach
