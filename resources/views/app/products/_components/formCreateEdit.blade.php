@@ -6,7 +6,7 @@
         <form action="{{ route('app.products.store') }}" method="post">
             @csrf
 @endif
-        <input type="text" value="{{ $product->name ?? old('name') }}" name="name" placeholder="name's product"
+        <input type="text" name="name" value="{{ $product->name ?? old('name') }}"  placeholder="name's product"
             class="borda-preta">
         {{ $errors->has('name') ? $errors->first('name') : '' }}
 
