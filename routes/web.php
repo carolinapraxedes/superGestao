@@ -12,8 +12,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ClientsController;
 use App\Http\Controllers\ProvidersController;
 use App\Http\Controllers\ProductsController;
-
-
+use App\Http\Controllers\TesteProdutos;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,10 +44,43 @@ Route::middleware('authentication:default')->prefix('/app')->group(function(){
         ->name('app.logout');
     Route::get('/clients',[ClientsController::class,'index'])
         ->name('app.clients');
+
+    //routes providers
     Route::get('/providers',[ProvidersController::class,'index'])
         ->name('app.providers');
-    Route::get('/products', [ProductsController::class,'index'])
-        ->name('app.products');
+        Route::get('/providers/list',[ProvidersController::class,'list'])
+        ->name('app.providers.list');
+        Route::post('/providers/list',[ProvidersController::class,'list'])
+        ->name('app.providers.list');
+
+        Route::get('/providers/add',[ProvidersController::class,'add'])
+        ->name('app.providers.add');
+        Route::post('/providers/add',[ProvidersController::class,'add'])
+        ->name('app.providers.add');
+
+        Route::get('/providers/edit/{id}/{msg?}',[ProvidersController::class,'edit'])
+        ->name('app.providers.edit');
+
+        Route::get('/providers/delete/{id}',[ProvidersController::class,'delete'])
+        ->name('app.providers.delete');
+
+    //routes products
+    Route::resource('products',ProductsController::class)->names([
+        'index'=>'app.products',
+        'create'=>'app.products.create',
+        'store'=>'app.products.store',
+        'show'=>'app.products.show',
+        'edit'=>'app.products.edit',
+        'update'=>'app.products.update',
+
+        
+    ]);
+
+    
+    Route::resource('teste_produtos',TesteProdutos::class)->names([
+        'index'=>'app.produtos',
+        'store'=>'app.produtos.store'
+    ]);
 });
 
 
