@@ -12,6 +12,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ClientsController;
 use App\Http\Controllers\ProvidersController;
 use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\ProductDetailController;
 use App\Http\Controllers\TesteProdutos;
 
 /*
@@ -74,6 +75,11 @@ Route::middleware('authentication:default')->prefix('/app')->group(function(){
         'update'=>'app.products.update',
 
         
+    ]);
+
+    //routes products details
+    Route::resource('productsDetails',ProductDetailController::class)->names([
+ 
     ]);
 
     

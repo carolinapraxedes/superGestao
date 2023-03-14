@@ -59,7 +59,7 @@ class LoginController extends Controller
 
             return redirect()->route('app.home');
         }else{
-            return redirect()->route('site.login');
+            return redirect()->route('site.login',['erro'=>1]);
         }
     }
 
