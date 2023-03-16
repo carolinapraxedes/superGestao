@@ -20,6 +20,9 @@
                             <th>Description</th>
                             <th>Weight</th>
                             <th>ID Unit</th>
+                            <th>Lenght</th>
+                            <th>Width</th>
+                            <th>Height</th>
                             <th>Details</th>
                             <th>Edit</th>
                             <th>Delete</th>
@@ -33,6 +36,9 @@
                                 <td>{{$product->description}}</td>
                                 <td>{{$product->weight}}</td>
                                 <td>{{$product->unitId}}</td>
+                                <td>{{$product->ProductDetail->length ?? ''}}</td>
+                                <td>{{$product->ProductDetail->width ?? ''}}</td>
+                                <td>{{$product->ProductDetail->height ?? ''}}</td>
                                 <td><a href="{{route('app.products.show',$product->id)}}">More Details</a></td>
                                 <td><a href="{{route('app.products.edit',$product->id)}}">Edit</a></td>
                                 <td>

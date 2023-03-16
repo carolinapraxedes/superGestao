@@ -11,8 +11,7 @@
                 <li><a href="">Consultation</a></li>
             </ul>
         </div>
-        <div class="informacao-pagina">
-            
+        <div class="informacao-pagina">            
             <div style="width:30%; margin-left:auto;margin-right:auto;">
                 @component('app.products._components.formCreateEdit',['product'=>$product, 'units'=>$units])
                     

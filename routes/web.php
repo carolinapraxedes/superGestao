@@ -78,9 +78,7 @@ Route::middleware('authentication:default')->prefix('/app')->group(function(){
     ]);
 
     //routes products details
-    Route::resource('productsDetails',ProductDetailController::class)->names([
- 
-    ]);
+    Route::resource('productsDetails',ProductDetailController::class);
 
     
     Route::resource('teste_produtos',TesteProdutos::class)->names([

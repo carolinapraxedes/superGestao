@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ProductDetail;
+use App\Models\Unit;
 use Illuminate\Http\Request;
 
 class ProductDetailController extends Controller
@@ -23,7 +25,8 @@ class ProductDetailController extends Controller
      */
     public function create()
     {
-        //
+        $units = Unit::all();
+        return view('app.productDetail.create', ['units' => $units]);
     }
 
     /**
@@ -34,7 +37,8 @@ class ProductDetailController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        ProductDetail::create($request->all());
+        return view('app.products');
     }
 
     /**
@@ -51,12 +55,19 @@ class ProductDetailController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(ProductDetail $productsDetail)
     {
-        //
+        //$productsDetail = ProductDetail::find($id);
+
+        $units = Unit::all();
+
+        return view('app.productDetail.edit', [
+            'productsDetail' => $productsDetail,
+            'units' => $units,
+        ]);
     }
 
     /**
@@ -66,9 +77,10 @@ class ProductDetailController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, ProductDetail $productsDetail)
     {
-        //
+        $productsDetail->update($request->all());
+        return view('app.products');
     }
 
     /**
