@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Products;
+use App\Models\Provider;
 use App\Models\testeProducts;
 use App\Models\Unit;
 use Illuminate\Http\Request;
@@ -17,8 +18,7 @@ class ProductsController extends Controller
     public function index(Request $request)
     {
         $products = Products::paginate(10);
-
-        //dd($products);
+        
 
         return view('app.products.index',['products'=>$products,'request'=>$request->all()]);
     }
@@ -32,7 +32,10 @@ class ProductsController extends Controller
     {
         $units = Unit::all();
         //estou recuperando as unidades registradas no banco 
-        return view('app.products.create',['units'=>$units]);
+
+        $providers = Provider::all();
+
+        return view('app.products.create',['units'=>$units, 'providers'=>$providers]);
     }
 
     /**
@@ -52,7 +55,8 @@ class ProductsController extends Controller
             encaminhado existir na tabela unidades.
             para isso, usamos: exists:<tabela>,<coluna>
             */
-            'unitId'=>'exists:units,id'        
+            'unitId'=>'exists:units,id',
+            'providerID'=>'exists:providers,id'           
         ];
         $feedback=[
             'required'=> 'O campo :attribute deve ser preenchido',
@@ -61,7 +65,8 @@ class ProductsController extends Controller
             'description.min'=> 'O campo descrição deve ter no mínimo 3 caracteres',
             'description.max'=> 'O campo descrição deve ter no máximo 2000 caracteres',
             'weight.integer' => 'O campo peso deve ser um número inteiro',
-            'unitId.exists' => 'A unidade de medida informada não existe'
+            'unitId.exists' => 'A unidade de medida informada não existe',
+            'providerID.exists' => 'O fornecedor informado não existe'
         ];
 
         $request->validate($rules,$feedback);
@@ -97,7 +102,11 @@ class ProductsController extends Controller
     public function edit(Products $product)
     {
         $units = Unit::all();
-         return view('app.products.edit',['product'=>$product, 'units'=>$units]);
+        $providers = Provider::all();
+         return view('app.products.edit',['product'=>$product, 
+         'units'=>$units,
+         'providers' => $providers
+        ]);
        
     }
 
@@ -114,6 +123,28 @@ class ProductsController extends Controller
         * eu recupero a instancia do objeto, utilizo o metodo update e recebo os 
         * os dados requisição irão atualizar os atributos habilitados
         */
+
+        //regras de validação
+        $rules =[
+            'name'=>'required|min:3|max:40',
+            'description'=>'required|min:3|max:2000',
+            'weight'=>'required|integer',
+            'unitId'=>'exists:units,id',   
+            'providerID'=>'exists:providers,id'     
+        ];
+        $feedback=[
+            'required'=> 'O campo :attribute deve ser preenchido',
+            'name.min'=> 'O campo nome deve ter no mínimo 3 caracteres',
+            'name.max'=> 'O campo nome deve ter no máximo 40 caracteres',
+            'description.min'=> 'O campo descrição deve ter no mínimo 3 caracteres',
+            'description.max'=> 'O campo descrição deve ter no máximo 2000 caracteres',
+            'weight.integer' => 'O campo peso deve ser um número inteiro',
+            'unitId.exists' => 'A unidade de medida informada não existe',
+            'providerID.exists' => 'O fornecedor informado não existe'
+        ];
+
+        $request->validate($rules,$feedback);
+        
         $product->update($request->all());
         return redirect()->route('app.products.show',['product'=>$product->id]);
     }

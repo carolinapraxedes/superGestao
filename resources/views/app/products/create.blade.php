@@ -17,7 +17,7 @@
         <div class="informacao-pagina">
             {{$msg ?? ''}}
             <div style="width:30%; margin-left:auto;margin-right:auto;">
-                @component('app.products._components.formCreateEdit',['units'=>$units])
+                @component('app.products._components.formCreateEdit',['units'=>$units, 'providers'=>$providers])
                     
                 @endcomponent
             </div>

@@ -18,6 +18,7 @@
                         <tr>
                             <th>Name</th>
                             <th>Description</th>
+                            <th>Provider</th>
                             <th>Weight</th>
                             <th>ID Unit</th>
                             <th>Lenght</th>
@@ -33,7 +34,8 @@
                         {{-- Para cada indice do array, iremos criar uma linha (tr) --}}
                             <tr>
                                 <td>{{$product->name}}</td>
-                                <td>{{$product->description}}</td>
+                                <td>{{$product->name}}</td>
+                                <td>{{$product->provider->name}}</td>
                                 <td>{{$product->weight}}</td>
                                 <td>{{$product->unitId}}</td>
                                 <td>{{$product->ProductDetail->length ?? ''}}</td>

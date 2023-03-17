@@ -13,7 +13,7 @@
         </div>
         <div class="informacao-pagina">            
             <div style="width:30%; margin-left:auto;margin-right:auto;">
-                @component('app.products._components.formCreateEdit',['product'=>$product, 'units'=>$units])
+                @component('app.products._components.formCreateEdit',['product'=>$product, 'units'=>$units,'providers'=>$providers])
                     
                 @endcomponent
             </div>
