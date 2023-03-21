@@ -9,10 +9,14 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\LoginController;
 
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\ClientsController;
 use App\Http\Controllers\ProvidersController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\ProductDetailController;
+
+use App\Http\Controllers\ClientController;
+use App\Http\Controllers\RequestController;
+use App\Http\Controllers\RequestProductController;
+
 use App\Http\Controllers\TesteProdutos;
 
 /*
@@ -43,8 +47,7 @@ Route::middleware('authentication:default')->prefix('/app')->group(function(){
         ->name('app.home');
     Route::get('/logout',[LoginController::class,'logout'])
         ->name('app.logout');
-    Route::get('/clients',[ClientsController::class,'index'])
-        ->name('app.clients');
+
 
     //routes providers
     Route::get('/providers',[ProvidersController::class,'index'])
@@ -80,6 +83,10 @@ Route::middleware('authentication:default')->prefix('/app')->group(function(){
     //routes products details
     Route::resource('productsDetails',ProductDetailController::class);
 
+
+    Route::resource('clients',ClientController::class);
+    Route::resource('requests',RequestController::class);
+    Route::resource('requestsProducts',RequestProductController::class);
     
     Route::resource('teste_produtos',TesteProdutos::class)->names([
         'index'=>'app.produtos',
